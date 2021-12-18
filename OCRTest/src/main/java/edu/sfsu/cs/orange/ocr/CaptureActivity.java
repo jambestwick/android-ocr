@@ -196,8 +196,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
      */
     static final int MINIMUM_MEAN_CONFIDENCE = 0; // 0 means don't reject any scored results
 
-    /********** is above android 6.0 request permission*******************************************************/
-    static final int PERMISSION_REQUEST_CODE = 5;
 
     // Context menu
     private static final int SETTINGS_ID = Menu.FIRST;
@@ -261,6 +259,11 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        initViews();
+
+    }
+
+    private void initViews() {
 
         checkFirstLaunch();
 
@@ -384,16 +387,12 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         });
 
         isEngineReady = false;
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PermissionHelper.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         resetStatusView();
 
         String previousSourceLanguageCodeOcr = sourceLanguageCodeOcr;
@@ -1292,14 +1291,5 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                 .show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            for (int i = 0; i < grantResults.length; i++) {
-                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                    PermissionHelper.requestPermission(this, new String[]{permissions[i]}, PERMISSION_REQUEST_CODE);
-                }
-            }
-        }
-    }
+
 }

@@ -15,4 +15,14 @@ public class PermissionHelper {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public static boolean checkPermission(Activity context, String[] permissions) {
+        for (String permission : permissions) {
+            if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

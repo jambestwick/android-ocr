@@ -75,7 +75,7 @@ public class PreferencesActivity extends PreferenceActivity implements
   /**
    * Set the default preference values.
    * 
-   * @param Bundle
+   * @param
    *            savedInstanceState the current Activity's state, as passed by
    *            Android
    */

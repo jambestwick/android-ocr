@@ -8,9 +8,9 @@ import android.os.Build;
 public class PermissionHelper {
     @TargetApi(Build.VERSION_CODES.M)
     public static void requestPermission(Activity context, String[] permissions, int requestCode) {
-        for (int i = 0; i < permissions.length; i++) {
-            if (context.checkSelfPermission(permissions[i]) != PackageManager.PERMISSION_GRANTED) {
-                context.requestPermissions(new String[]{permissions[i]}, requestCode);
+        for (String permission : permissions) {
+            if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                context.requestPermissions(new String[]{permission}, requestCode);
             }
         }
     }

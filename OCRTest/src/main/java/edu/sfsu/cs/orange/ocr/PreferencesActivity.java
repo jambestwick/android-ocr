@@ -70,7 +70,7 @@ public class PreferencesActivity extends PreferenceActivity implements
   private EditTextPreference editTextPreferenceCharacterWhitelist;
   private ListPreference listPreferencePageSegmentationMode;
   
-  private static SharedPreferences sharedPreferences;
+  private SharedPreferences sharedPreferences;
   
   /**
    * Set the default preference values.
